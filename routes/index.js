@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const twitterRoutes = require('./twitterRoutes');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+/*
+All routes will be here
+*/
+let router = (app) => {  
+  let router = express.Router();
+
+  twitterRoutes(router);
+  
+  app.use('/', router);
+
+}
 
 module.exports = router;
