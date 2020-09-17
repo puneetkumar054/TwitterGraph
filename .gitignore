@@ -12,6 +12,9 @@
 #lock
 package-lock.json
 
+#environment var
+.env
+
 # IDEs and editors
 .vscode/
 /.idea
