@@ -1,12 +1,13 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+require('dotenv').config();
 
-var router = require('./routes/index');
+const router = require('./routes/index');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,4 +37,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`app listening at http://localhost:${process.env.SERVER_PORT}`)
+})
 module.exports = app;

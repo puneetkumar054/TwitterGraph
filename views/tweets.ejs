@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="/stylesheets/style.css" />
+<!-- Add icon library -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<h3 style="text-align: center">Tweets</h3>
+
+<!-- Container -->
+<div class="grid-container">
+    <!-- Chart -->
+    <div class="grid-item">
+        <canvas id="myChart" width="100" height="100"></canvas>
+    </div>
+    
+    <!-- Tweets -->
+    <div class="grid-item">
+        <% for(var i=0; i < data.length; i++) { %>
+        <div class="card">
+          <% if(data[i].entities && data[i].entities.media &&
+          data[i].entities.media.length) { %> <% for(var j=0; j <
+          data[i].entities.media.length; j++) { %>
+          <img
+            src="<%= data[i].entities.media[j].media_url %>"
+            alt="John"
+            style="width: 100%"
+          />
+          <% } %> <% } %> <% if(data[i].quoted_status && data[i].quoted_status.entities
+          && data[i].quoted_status.entities.media &&
+          data[i].quoted_status.entities.media.length) { %> <% for(var j=0; j <
+          data[i].quoted_status.entities.media.length; j++) { %>
+          <img
+            src="<%= data[i].quoted_status.entities.media[j].media_url %>"
+            alt="John"
+            style="width: 100%"
+          />
+          <% } %> <% } %>
+        
+          <p class="title"></p>
+          <p><%= data[i].text %></p>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <p><button></button></p>
+        </div>
+        <% } %>
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+  window.addEventListener("scroll", function () {
+    if (window.pageYOffset >= document.body.scrollHeight - 1000) {
+      let params = new URLSearchParams(location.search);
+      let page_no = parseInt(params.get("page_no"));
+      location.search = location.search.replace(
+        "=" + page_no,
+        "=" + (page_no + 1)
+      );
+    }
+  });
+</script>
+
+
+<% if (graph) { %>
+<script>
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var labels = "<%= graph.labels %>";
+  var set = "<%= graph.set %>";
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: "bar",
+
+    // The data for our dataset
+    data: {
+      labels: labels.split(','),
+      datasets: [
+        {
+          label: "10 Tweets of this Week",
+          backgroundColor: "rgb(255, 99, 132)",
+          borderColor: "rgb(255, 99, 132)",
+          data: set.split(','),
+        },
+      ],
+    },
+    options: {},
+  });
+</script>
+<% } %>

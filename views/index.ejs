@@ -7,5 +7,23 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <form method='GET' action="/get-tweets">
+      <div class="container">
+          <div class="prompt left-pane">
+              <span>Enter your twitter handle</span>
+          </div>
+          <div class="right-pane">
+              <input type="text" id="screen_name" name="screen_name" />
+          </div>
+          <div class="right-pane" style="display: none;">
+            <input type="text" id="page_no" name="page_no" value=1 />
+          </div>
+      </div>
+      <div class="submit-name">
+          <input type="submit" value="Submit" />
+      </div>
+      </div>
+  </form>
+
   </body>
 </html>
