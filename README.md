@@ -1,9 +1,12 @@
 # TwitterGraph
 
+## About the TwitterGraph
+    1. First page will be asking for any twitter handle which is available on twitter. 
+    2. This will show your 10 tweets and graph of current week (10 visible data)  with infinite scrolling.
+
 ## Development server
 
 Run `node app.js 'or' nodemon app.js` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
-
 
 ## Program Stacks 
     1. Node: 12.18.3

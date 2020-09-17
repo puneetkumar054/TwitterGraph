@@ -38,7 +38,7 @@ const twitterRoutes = (router) => {
         });
 
         tweets = skip == 0 ? tweets.data : tweets.data.splice(-10, skip);
-        console.log(tweets.length);
+        
         let graph_data = twitterServices.getGraphData(tweets);
         
         res.render("tweets", { data: tweets, graph: graph_data});
